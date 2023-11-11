@@ -19,7 +19,7 @@ export const Sidebar: React.FC = () => {
             top="0"
             left="0"
             h="100vh"
-            w="300px" // Increased width
+            w="400px" // Increased width
             bg="gray.900" // Black theme
             color="white"
             p={5}

@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import {Layout} from "./components";
+import {MapPage} from "./pages";
 import App from './App';
 import {ChakraProvider} from '@chakra-ui/react'
 
@@ -12,8 +13,7 @@ root.render(
     <ChakraProvider>
         <React.StrictMode>
             <Layout>
-                <div>ffdsfkjsfhfkjdhs</div>
-            {/*< App/>*/}
+            <MapPage/>
             </Layout>
         </React.StrictMode>
     </ChakraProvider>
