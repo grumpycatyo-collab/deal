@@ -41,6 +41,10 @@ export const MapPage: React.FC = () => {
         fillOpacity: 0.7,
     };
 
+    const smoothStyleTransition = (layer: L.Polygon, newStyle: L.PathOptions) => {
+        layer.setStyle(newStyle);
+    };
+
     const handlePolygonClick = (territory: TerritoryData) => {
         setSelectedTerritory(territory);
         setHoveredTerritoryId(null); // Disable hover effect when a territory is selected
@@ -48,16 +52,16 @@ export const MapPage: React.FC = () => {
     };
 
     const handlePolygonMouseOver = (e: L.LeafletMouseEvent, territoryId: string) => {
-        if (!isOpen) {
+        if (!isOpen && hoveredTerritoryId !== territoryId) {
             setHoveredTerritoryId(territoryId);
-            e.target.setStyle(hoverStyle);
+            smoothStyleTransition(e.target, hoverStyle);
         }
     };
 
     const handlePolygonMouseOut = (e: L.LeafletMouseEvent) => {
-        if (!isOpen) {
+        if (!isOpen && hoveredTerritoryId) {
             setHoveredTerritoryId(null);
-            e.target.setStyle(defaultStyle);
+            smoothStyleTransition(e.target, defaultStyle);
         }
     };
 
@@ -65,7 +69,6 @@ export const MapPage: React.FC = () => {
         setSelectedTerritory(null); // Reset selected territory when drawer is closed
         onClose();
     };
-
     return (
         <>
             <MapContainer
@@ -74,7 +77,7 @@ export const MapPage: React.FC = () => {
                 style={{ height: '100%', width: '100%' }} // Map size
             >
                 <TileLayer
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 />
                 {territories.map((territory) => (

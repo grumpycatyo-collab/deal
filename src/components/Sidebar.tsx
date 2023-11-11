@@ -1,15 +1,6 @@
 import React from 'react';
-import {
-    Box,
-    VStack,
-    Heading,
-    Menu,
-    MenuButton,
-    MenuList,
-    MenuItem,
-    Button,
-} from '@chakra-ui/react';
-import { ChevronDownIcon } from '@chakra-ui/icons';
+import {Box, VStack, Heading, Button, Divider, Spacer, Container} from '@chakra-ui/react';
+import { ViewIcon as MapIcon, SunIcon as BugIcon, InfoIcon as DocumentIcon, AtSignIcon } from '@chakra-ui/icons';
 
 export const Sidebar: React.FC = () => {
     return (
@@ -26,23 +17,57 @@ export const Sidebar: React.FC = () => {
         >
             <Heading mb={10}>DEAL</Heading>
             <VStack align="stretch" spacing={4}>
-                <Menu>
-                    {/*_expanded={{ bg: 'gray.700' }}*/}
-                    <MenuButton as={Button} rightIcon={<ChevronDownIcon />}
-                                _hover={{ textDecoration: 'none' }}
-                                outline="1px solid" // Outline property
-                                outlineColor="blue" // Outline color
-                                _focus={{ outline: '2px solid', outlineColor: 'red' }} >
-                        Dropdown 1
-                    </MenuButton>
-                    <MenuList>
-                        <MenuItem color={"black"}>Option 1</MenuItem>
-                        <MenuItem color={"black"}>Option 2</MenuItem>
-                        <MenuItem color={"black"}>Option 3</MenuItem>
-                        {/* Add more options as needed */}
-                    </MenuList>
-                </Menu>
-                {/* Removed additional menus */}
+                {/* Hoverable buttons with icons */}
+                <Button
+                    leftIcon={<MapIcon />}
+                    justifyContent="flex-start"
+                    color='white'
+                    variant="ghost"
+                    _hover={{ bg: 'gray.700', color: 'white' }} // Adjust hover styles
+                    iconSpacing={4}
+                >
+                    Segmented & Cadastral Map
+                </Button>
+                <Button
+                    color='white'
+                    leftIcon={<BugIcon />}
+                    justifyContent="flex-start"
+                    variant="ghost"
+                    _hover={{ bg: 'gray.700', color: 'white' }} // Adjust hover styles
+                    iconSpacing={4}
+                >
+                    Pest Control
+                </Button>
+
+                {/* Spacer to push the lower part to the bottom */}
+                <Spacer my={80} />
+
+                {/* Divider */}
+                <Divider borderColor="gray.600" my={4} />
+
+                {/* Documentation and Profile */}
+                <VStack align={"right"}>
+                <Button
+                    color='white'
+                    leftIcon={<DocumentIcon />}
+                    justifyContent="flex-start"
+                    variant="ghost"
+                    _hover={{ bg: 'gray.700', color: 'white' }} // Adjust hover styles
+                    iconSpacing={4}
+                >
+                    Documentation
+                </Button>
+                <Button
+                    color='white'
+                    leftIcon={<AtSignIcon />}
+                    justifyContent="flex-start"
+                    variant="ghost"
+                    _hover={{ bg: 'gray.700', color: 'white' }} // Adjust hover styles
+                    iconSpacing={4}
+                >
+                    Profile
+                </Button>
+                </VStack>
             </VStack>
         </Box>
     );
