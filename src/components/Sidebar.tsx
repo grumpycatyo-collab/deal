@@ -1,15 +1,28 @@
 import React from 'react';
+
+import { Link } from 'react-router-dom';
 import {
     Box,
     VStack,
     Heading,
+    Button,
+    Divider,
+    Spacer,
+    Container,
     Menu,
+    Image,
     MenuButton,
     MenuList,
-    MenuItem,
-    Button,
+    MenuItem, HStack
 } from '@chakra-ui/react';
-import { ChevronDownIcon } from '@chakra-ui/icons';
+import {
+    ViewIcon as MapIcon,
+    SunIcon as BugIcon,
+    InfoIcon as DocumentIcon,
+    AtSignIcon,
+    ChevronDownIcon
+} from '@chakra-ui/icons';
+
 
 export const Sidebar: React.FC = () => {
     return (
@@ -23,26 +36,88 @@ export const Sidebar: React.FC = () => {
             bg="gray.900" // Black theme
             color="white"
             p={5}
+
         >
-            <Heading mb={10}>DEAL</Heading>
+            <HStack mb={10} spacing={4}>
+                <Image
+                    src="big_handshake.png" // Replace with the path to your logo image
+                    alt="Logo"
+                    boxSize="50px" // Set the size of the logo
+                />
+                <Heading>DEAL</Heading>
+            </HStack>
             <VStack align="stretch" spacing={4}>
+
                 <Menu>
-                    {/*_expanded={{ bg: 'gray.700' }}*/}
-                    <MenuButton as={Button} rightIcon={<ChevronDownIcon />}
-                                _hover={{ textDecoration: 'none' }}
-                                outline="1px solid" // Outline property
-                                outlineColor="blue" // Outline color
-                                _focus={{ outline: '2px solid', outlineColor: 'red' }} >
-                        Dropdown 1
+                    <MenuButton
+                        as={Button}
+                        leftIcon={<MapIcon />}
+                        justifyContent="flex-start"
+                        color='white'
+                        variant="ghost"
+                        _hover={{ bg: 'gray.700', color: 'white' }}
+                        iconSpacing={4}
+                        rightIcon={<ChevronDownIcon />}
+                        textAlign={"left"}
+                    >
+                        Segmented & Cadastral Data
                     </MenuButton>
-                    <MenuList>
-                        <MenuItem color={"black"}>Option 1</MenuItem>
-                        <MenuItem color={"black"}>Option 2</MenuItem>
-                        <MenuItem color={"black"}>Option 3</MenuItem>
-                        {/* Add more options as needed */}
+                    <MenuList bgColor={'gray.900'}>
+                        <Link to="/" >
+                            <MenuItem bgColor={'gray.900'} _hover={{ bg: 'gray.700', color: 'white' }}>
+                                Segmented
+                            </MenuItem>
+                        </Link>
+                        <Link to="/cadastral"  >
+                            <MenuItem bgColor={'gray.900'} _hover={{ bg: 'gray.700', color: 'white' }}>
+                                Cadastral
+                            </MenuItem>
+                        </Link>
                     </MenuList>
                 </Menu>
-                {/* Removed additional menus */}
+                <Link to="/ndvi">
+                <Button
+                    color='white'
+                    leftIcon={<BugIcon />}
+                    justifyContent="flex-start"
+                    variant="ghost"
+                    _hover={{ bg: 'gray.700', color: 'white' }} // Adjust hover styles
+                    iconSpacing={4}
+                >
+                   Health Control
+                </Button>
+                </Link>
+
+
+                {/* Spacer to push the lower part to the bottom */}
+                <Spacer my={80} />
+
+                {/* Divider */}
+                <Divider borderColor="gray.600" my={4} />
+
+                {/* Documentation and Profile */}
+                <VStack align={"right"}>
+                <Button
+                    color='white'
+                    leftIcon={<DocumentIcon />}
+                    justifyContent="flex-start"
+                    variant="ghost"
+                    _hover={{ bg: 'gray.700', color: 'white' }} // Adjust hover styles
+                    iconSpacing={4}
+                >
+                    Documentation
+                </Button>
+                <Button
+                    color='white'
+                    leftIcon={<AtSignIcon />}
+                    justifyContent="flex-start"
+                    variant="ghost"
+                    _hover={{ bg: 'gray.700', color: 'white' }} // Adjust hover styles
+                    iconSpacing={4}
+                >
+                    Profile
+                </Button>
+                </VStack>
             </VStack>
         </Box>
     );
