@@ -31,7 +31,8 @@ const territories: TerritoryData[] = [
             [47.3817, 29.0833],
             [47.3862, 29.08431]
         ],
-        cropType:'unsown'
+        cropType:'unsown',
+        type:"segment"
 
     },
 
@@ -44,7 +45,8 @@ const territories: TerritoryData[] = [
             [47.3811400, 29.0900188],
             [47.3850855, 29.0908598]
         ],
-        cropType:'unsown'
+        cropType:'unsown',
+        type:"segment"
 
     },
     {
@@ -57,7 +59,8 @@ const territories: TerritoryData[] = [
             [47.3802044, 29.1081911],
             [47.3834992, 29.1071398]
         ],
-        cropType:'unsown'
+        cropType:'unsown',
+        type:"segment"
 
     },
 
@@ -74,7 +77,8 @@ const territories: TerritoryData[] = [
             [47.3777551, 29.1027422],
 
         ],
-        cropType:'wheat'
+        cropType:'wheat',
+        type:"segment"
 
     },
 
@@ -87,7 +91,8 @@ const territories: TerritoryData[] = [
             [47.3778816, 29.1016219],
             [47.3777235, 29.1026955],
         ],
-        cropType:'wheat'
+        cropType:'wheat',
+        type:"segment"
 
     },
     {
@@ -99,7 +104,8 @@ const territories: TerritoryData[] = [
             [47.3709905, 29.1040258],
             [47.3779132, 29.1004783],
         ],
-        cropType:'wheat'
+        cropType:'wheat',
+        type:"segment"
 
     },
     {
@@ -111,7 +117,8 @@ const territories: TerritoryData[] = [
             [47.3757480, 29.0968141],
             [47.3782292, 29.0954371],
         ],
-        cropType:'corn'
+        cropType:'corn',
+        type:"segment"
 
     },
     {
@@ -123,7 +130,8 @@ const territories: TerritoryData[] = [
             [47.3745468, 29.0974209],
             [47.3746732, 29.1020420],
         ],
-        cropType:'corn'
+        cropType:'corn',
+        type:"segment"
 
     },
 
@@ -136,7 +144,8 @@ const territories: TerritoryData[] = [
             [47.3732665, 29.0981444],
             [47.3734404, 29.1026955],
         ],
-        cropType:'corn'
+        cropType:'corn',
+        type:"segment"
 
     },
     {
@@ -148,7 +157,8 @@ const territories: TerritoryData[] = [
             [47.3720337, 29.0988913],
             [47.3721760, 29.1033257],
         ],
-        cropType:'corn'
+        cropType:'corn',
+        type:"segment"
 
     },
     {
@@ -161,7 +171,8 @@ const territories: TerritoryData[] = [
             [47.3706270, 29.0999182],
             [47.3708008, 29.1040025],
         ],
-        cropType:'corn'
+        cropType:'corn',
+        type:"segment"
     },
     {
         id: '12',
@@ -172,7 +183,8 @@ const territories: TerritoryData[] = [
             [47.3655496, 29.1023389],
             [47.3782705, 29.0952905],
         ],
-        cropType:'wheat'
+        cropType:'wheat',
+        type:"segment"
 
     },
     {
@@ -187,7 +199,8 @@ const territories: TerritoryData[] = [
             [47.3804900, 29.0711360],
             [47.3810866, 29.0709944],
         ],
-        cropType:'alfafa'
+        cropType:'alfafa',
+        type:"segment"
 
     },
 
@@ -206,13 +219,34 @@ const territories: TerritoryData[] = [
             [47.3815550, 29.0669693],
             [47.3825883, 29.0664798],
         ],
-        cropType:'alfafa'
+        cropType:'alfafa',
+        type:"segment"
+
+    },
+    {
+        id: 'a1',
+        name: 'f8a',
+        coordinates: [
+            [47.3835686, 29.0664792],
+            [47.3815160, 29.0833959],
+            [47.3803365, 29.0973750],
+            [47.3795371, 29.1077550],
+            [47.3773631, 29.1088491],
+            [47.3785745, 29.0936463],
+            [47.3795421, 29.0830647],
+            [47.3811163, 29.0710004],
+            [47.3815550, 29.0669693],
+            [47.3825883, 29.0664798],
+        ],
+        cropType:'wheat',
+        type:"cadastral"
+
 
     },
 
     {
         id: '15',
-        name: 'f8a',
+        name: '2ffasa',
         coordinates: [
             [47.3838397, 29.0424463],
             [47.3899469, 29.0391254],
@@ -228,7 +262,8 @@ const territories: TerritoryData[] = [
             [47.3838113, 29.0425059],
 
         ],
-        cropType:'forest'
+        cropType:'forest',
+        type:"segment"
 
     },
 
@@ -303,6 +338,17 @@ export const MapPage: React.FC = () => {
         [47.376736604729, 29.1048660897334], // Northeast corner of the image
     ];
 
+    const getDefaultStyle = (territoryType: string): L.PathOptions => {
+        return territoryType === "segment" ? {
+            color: 'red',
+            fillColor: 'red',
+            fillOpacity: 0.3,
+        } : {
+            color: 'green',
+            fillColor: 'green',
+            fillOpacity: 0.1,
+        };
+    };
 
 
 
@@ -339,23 +385,23 @@ export const MapPage: React.FC = () => {
             <ImageOverlay url={imageUrl} bounds={imageBounds}/>
             {territories.map((territory) => (
                 <Polygon
-                key={territory.id}
-                positions={territory.coordinates}
-                pathOptions={
-                selectedTerritory?.id === territory.id
-                    ? selectedStyle
-                    : hoveredTerritoryId === territory.id
-                        ? hoverStyle
-                        : showCropType && territory.cropType
-                            ? getCropStyle(territory.cropType)
-                            : defaultStyle
-            }
-            eventHandlers={{
-                click: () => handlePolygonClick(territory),
-                mouseover: (e) => handlePolygonMouseOver(e, territory.id),
-                mouseout: (e) => handlePolygonMouseOut(e),
-            }}
-        />
+                    key={territory.id}
+                    positions={territory.coordinates}
+                    pathOptions={
+                        selectedTerritory?.id === territory.id
+                            ? selectedStyle
+                            : hoveredTerritoryId === territory.id
+                                ? hoverStyle
+                                : showCropType && territory.cropType
+                                    ? getCropStyle(territory.cropType)
+                                    : getDefaultStyle(territory.type) // Use the function to determine the style
+                    }
+                    eventHandlers={{
+                        click: () => handlePolygonClick(territory),
+                        mouseover: (e) => handlePolygonMouseOver(e, territory.id),
+                        mouseout: (e) => handlePolygonMouseOut(e),
+                    }}
+                />
         ))}
 
 
@@ -369,7 +415,8 @@ export const MapPage: React.FC = () => {
                 <DrawerContent bg="gray.900" maxWidth="400px" >
                     <DrawerHeader color="white">See paramaters:</DrawerHeader>
                     <DrawerBody color="white" p={5}>
-                        <Text mb={4}>Information about {selectedTerritory?.name}</Text>
+                        <Text mb={4}>Information about "{selectedTerritory?.name}"</Text>
+                        <Text mb={4}>Type of territory : {selectedTerritory?.type}</Text>
                         <Box
                             mb={4}
                             p={4}
