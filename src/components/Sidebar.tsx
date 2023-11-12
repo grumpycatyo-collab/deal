@@ -1,4 +1,6 @@
 import React from 'react';
+
+import { Link } from 'react-router-dom';
 import {Box, VStack, Heading, Button, Divider, Spacer, Container} from '@chakra-ui/react';
 import { ViewIcon as MapIcon, SunIcon as BugIcon, InfoIcon as DocumentIcon, AtSignIcon } from '@chakra-ui/icons';
 
@@ -17,8 +19,9 @@ export const Sidebar: React.FC = () => {
         >
             <Heading mb={10}>DEAL</Heading>
             <VStack align="stretch" spacing={4}>
-                {/* Hoverable buttons with icons */}
+                <Link to="/">
                 <Button
+
                     leftIcon={<MapIcon />}
                     justifyContent="flex-start"
                     color='white'
@@ -28,6 +31,8 @@ export const Sidebar: React.FC = () => {
                 >
                     Segmented & Cadastral Map
                 </Button>
+                </Link>
+                <Link to="/ndvi">
                 <Button
                     color='white'
                     leftIcon={<BugIcon />}
@@ -38,6 +43,7 @@ export const Sidebar: React.FC = () => {
                 >
                     Pest Control
                 </Button>
+                </Link>
 
                 {/* Spacer to push the lower part to the bottom */}
                 <Spacer my={80} />

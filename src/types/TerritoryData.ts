@@ -1,9 +1,9 @@
 export type LatLngTuple = [number, number];
 
-
+export type CropType = 'alfafa' | 'corn' | 'wheat' | 'unsown' | 'forest';
 export interface TerritoryData {
     id: string;
     name: string;
-    info: string;
     coordinates: LatLngTuple[];
+    cropType: CropType;
 }
