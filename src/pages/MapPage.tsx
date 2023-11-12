@@ -319,7 +319,7 @@ export const MapPage: React.FC = () => {
         return {
             color: color,
             fillColor: color,
-            fillOpacity: color === 'none' ? 0 : 0.2,
+            fillOpacity: color === 'none' ? 0 : 0.9,
         };
     };
 

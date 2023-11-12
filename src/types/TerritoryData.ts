@@ -7,3 +7,5 @@ export interface TerritoryData {
     coordinates: LatLngTuple[];
     cropType: CropType;
 }
+
+export type MapType = 'NDVI' | 'NDRE' | 'MCARI';;

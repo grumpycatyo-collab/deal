@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import {Box, VStack, Heading, Button, Divider, Spacer, Container} from '@chakra-ui/react';
 import { ViewIcon as MapIcon, SunIcon as BugIcon, InfoIcon as DocumentIcon, AtSignIcon } from '@chakra-ui/icons';
 
+
 export const Sidebar: React.FC = () => {
     return (
         <Box
@@ -16,6 +17,7 @@ export const Sidebar: React.FC = () => {
             bg="gray.900" // Black theme
             color="white"
             p={5}
+
         >
             <Heading mb={10}>DEAL</Heading>
             <VStack align="stretch" spacing={4}>
@@ -41,9 +43,10 @@ export const Sidebar: React.FC = () => {
                     _hover={{ bg: 'gray.700', color: 'white' }} // Adjust hover styles
                     iconSpacing={4}
                 >
-                    Pest Control
+                   Health Control
                 </Button>
                 </Link>
+
 
                 {/* Spacer to push the lower part to the bottom */}
                 <Spacer my={80} />

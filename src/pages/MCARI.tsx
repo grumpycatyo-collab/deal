@@ -20,10 +20,10 @@ import { LatLngTuple} from "leaflet";
 import '@geoman-io/leaflet-geoman-free';
 import '@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css';
 import {FloatingContainer} from "../components";
+// <FloatingContainer/>
+export const MCARI: React.FC = () => {
 
-export const NDVI: React.FC = () => {
-
-    const imageUrl = "ndvi.png";
+    const imageUrl = "mcari.png";
     const imageBounds: [LatLngTuple, LatLngTuple] = [
         [47.3847362604729, 29.065046060897334], // Southwest corner of the image
         [47.376736604729, 29.1048660897334], // Northeast corner of the image
@@ -32,26 +32,27 @@ export const NDVI: React.FC = () => {
 
 
     return (
-
-            <MapContainer
-                center={[47.3814031, 29.0780993]} // Initial position (latitude, longitude)
-                zoom={15} // Initial zoom level
-                style={{height: '100%', width: '100%'}} // Map size
-            >
-
-
-                <TileLayer
-                    url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
-                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                />
-                <ImageOverlay url={imageUrl} bounds={imageBounds}/>
-
-                <FloatingContainer/>
-
-            </MapContainer>
+<>
+        <MapContainer
+            center={[47.3814031, 29.0780993]} // Initial position (latitude, longitude)
+            zoom={15} // Initial zoom level
+            style={{height: '100%', width: '100%'}} // Map size
+        >
 
 
+            <TileLayer
+                url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            />
+            <ImageOverlay url={imageUrl} bounds={imageBounds}/>
+
+
+        </MapContainer>
+
+
+    <FloatingContainer/>
+</>
     );
 };
 
-export default NDVI;
+export default MCARI;
