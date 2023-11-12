@@ -19,6 +19,7 @@ import { TerritoryData, CropType } from "../types";
 import { LatLngTuple} from "leaflet";
 import '@geoman-io/leaflet-geoman-free';
 import '@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css';
+import LoadingWelcomeScreen from "../components/LoadingWelocmeScreen";
 
 
 const territories: TerritoryData[] = [
@@ -269,6 +270,7 @@ const territories: TerritoryData[] = [
 
 
 ];
+
 
 
 export const MapPage: React.FC = () => {

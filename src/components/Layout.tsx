@@ -1,6 +1,7 @@
-import React, { ReactNode } from 'react';
+import React, {ReactNode, useEffect, useState} from 'react';
 import { Box } from '@chakra-ui/react';
 import Sidebar from './Sidebar';
+import LoadingWelcomeScreen from "./LoadingWelocmeScreen";
 
 // Define a type for the props expected by the Layout component
 type LayoutProps = {
@@ -8,6 +9,19 @@ type LayoutProps = {
 };
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
+    const [isFLoading, setIsFLoading] = useState(true);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsFLoading(false);
+        }, 2000);
+
+        return () => clearTimeout(timer);
+    }, []);
+
+    if (isFLoading) {
+        return <LoadingWelcomeScreen />;
+    }
     return (
         <Box display="flex">
             <Sidebar />
