@@ -13,6 +13,7 @@ const root = ReactDOM.createRoot(
 root.render(
     <ChakraProvider>
         <React.StrictMode>
+
             <Router>
                 <Layout>
                     <Routes>

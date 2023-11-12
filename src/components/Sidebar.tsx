@@ -25,6 +25,7 @@ import {
 
 
 export const Sidebar: React.FC = () => {
+
     return (
         <Box
             as="nav"
@@ -50,12 +51,13 @@ export const Sidebar: React.FC = () => {
 
                 <Menu>
                     <MenuButton
-                        as={Button}
+                       as={Button}
                         leftIcon={<MapIcon />}
                         justifyContent="flex-start"
                         color='white'
                         variant="ghost"
                         _hover={{ bg: 'gray.700', color: 'white' }}
+                       _active={{ bg: 'gray.700', color: 'white' }}
                         iconSpacing={4}
                         rightIcon={<ChevronDownIcon />}
                         textAlign={"left"}
@@ -81,7 +83,7 @@ export const Sidebar: React.FC = () => {
                     leftIcon={<BugIcon />}
                     justifyContent="flex-start"
                     variant="ghost"
-                    _hover={{ bg: 'gray.700', color: 'white' }} // Adjust hover styles
+                   _hover={{ bg: 'gray.700', color: 'white' }} // Adjust hover styles
                     iconSpacing={4}
                 >
                    Health Control

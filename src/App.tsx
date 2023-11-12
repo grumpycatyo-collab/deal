@@ -4,7 +4,7 @@ import {Box} from "@chakra-ui/react";
 
 function App() {
   return (
-    <Box>E gol cause esti pidarfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff</Box>
+    <Box></Box>
   );
 }
 
