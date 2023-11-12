@@ -10,9 +10,10 @@ import {
     Spacer,
     Container,
     Menu,
+    Image,
     MenuButton,
     MenuList,
-    MenuItem
+    MenuItem, HStack
 } from '@chakra-ui/react';
 import {
     ViewIcon as MapIcon,
@@ -37,7 +38,14 @@ export const Sidebar: React.FC = () => {
             p={5}
 
         >
-            <Heading mb={10}>DEAL</Heading>
+            <HStack mb={10} spacing={4}>
+                <Image
+                    src="big_handshake.png" // Replace with the path to your logo image
+                    alt="Logo"
+                    boxSize="50px" // Set the size of the logo
+                />
+                <Heading>DEAL</Heading>
+            </HStack>
             <VStack align="stretch" spacing={4}>
 
                 <Menu>

@@ -4,6 +4,7 @@ import { ChakraProvider } from '@chakra-ui/react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import {NDVI, MapPage, NDRE, MCARI, Cadastral} from "./pages";
+import FloatingLogo from "./components/FloatingLogo";
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
@@ -21,6 +22,7 @@ root.render(
                         <Route path="/mcari" element={<MCARI/>} />
                         <Route path="/cadastral" element={<Cadastral/>} />
                     </Routes>
+                    <FloatingLogo />
                 </Layout>
             </Router>
         </React.StrictMode>
